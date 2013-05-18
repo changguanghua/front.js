@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>front.js</title>
+    <style>
+      body { font-family: Georgia, serif; }
+      h3, p { margin: 5px; }
+      .person { border: 1px solid #ccc; margin: 5px; padding: 5px 10px; width: 200px; }
+    </style>
+  </head>
+  <body>
+
+    <h2>demo 1</h2>
+    <div id="target1"></div>
+    <h2>demo 2</h2>
+    <div id="target2"></div>
+
+    <script type="text/template" id="template">
+      <div class="person">
+        <h3>{{name}}</h3>
+        <p>Age: {{age}}</p>
+        <p>Sex: {{sex}}</p>
+      </div>
+    </script>
+
+    <script src="front.js"></script>
+    <script>
+      var source1 = {name: "Mike", age: 32, job: "Web Developer"};
+      var target1 = document.getElementById("target1");
+      var template1 = '<div class="person"><h3>{{name}}</h3><p>Age: {{age}}</p><p>Job: {{job}}</p></div>';
+      front(source1, target1, template1);
+
+      var source2 = [{name: "Bob", age: 24, sex: "male"}, {name: "Nick", age: 27, sex: "male"}, {name: "Jane", age: 25, sex: "female"}];
+      var target2 = document.getElementById("target2");
+      var template2 = document.getElementById("template").innerHTML;
+      front(source2, target2, template2);
+    </script>
+  </body>
+</html>
