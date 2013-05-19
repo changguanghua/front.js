@@ -5,8 +5,9 @@
     <title>front.js</title>
     <style>
       body { font-family: Georgia, serif; }
-      h3, p { margin: 5px; }
-      .person { border: 1px solid #ccc; margin: 5px; padding: 5px 10px; width: 200px; }
+      h2, h3, p { margin: 10px; }
+      div { vertical-align: top; }
+      .person { border: 1px solid #ccc; margin: 5px; padding: 5px 10px; width: 200px; display: inline-block; }
     </style>
   </head>
   <body>
@@ -15,12 +16,21 @@
     <div id="target1"></div>
     <h2>demo 2</h2>
     <div id="target2"></div>
+    <h2>demo 3</h2>
+    <div id="target3"></div>
+    <h2>demo 4</h2>
+    <div id="target4"></div>
 
     <script type="text/template" id="template">
       <div class="person">
         <h3>{{name}}</h3>
         <p>Age: {{age}}</p>
+        @if{{job}}
+        <p>Job: {{job}}</p>
+        @endif
+        @if{{sex}}
         <p>Sex: {{sex}}</p>
+        @endif
       </div>
     </script>
 
@@ -33,8 +43,13 @@
 
       var source2 = [{name: "Bob", age: 24, sex: "male"}, {name: "Nick", age: 27, sex: "male"}, {name: "Jane", age: 25, sex: "female"}];
       var target2 = document.getElementById("target2");
-      var template2 = document.getElementById("template").innerHTML;
+      var template2 = '<div class="person"><h3>{{name}}</h3><p>Age: {{age}}</p><p>Sex: {{sex}}</p></div>';
       front(source2, target2, template2);
+
+      var source3 = [{name: "Bob", age: 24, sex: "male", job: "Web Developer"}, {name: "Nick", age: 27, job: "Architect"}, {name: "Jane", age: 25, sex: "female"}];
+      var target3 = document.getElementById("target3");
+      var template3 = document.getElementById("template").innerHTML;
+      front(source3, target3, template3);
     </script>
   </body>
 </html>
