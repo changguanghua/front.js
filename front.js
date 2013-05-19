@@ -3,8 +3,8 @@ var front = function(source, target, template) {
   var html = "";
 
   data.forEach(function(el) {
-    var tmpl = template.replace(/@if\{\{(\w+)\}\}((?:(?!@endif)[\s\S])+)@endif/g, function($, $1, $2) {
-      return el[$1] ? $2 : "";
+    var tmpl = template.replace(/@if\{\{(\w+)\}\}([\s\S]+?)(@else([\s\S]+?))?@endif/g, function($, $1, $2, $3, $4) {
+      return el[$1] ? $2 : ($3 ? $4 : "");
     });
 
     html += tmpl.replace(/\{\{(\w+)\}\}/g, function($, $1) {
